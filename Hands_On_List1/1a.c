@@ -1,0 +1,20 @@
+/* Name - SHASHANK VYAS
+ * Roll No. - MT2024141
+ * Question: Soft link (symlink system call) 
+ */
+
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{
+	symlink("test1","slinktest");
+//	printf("SoftLink"); //Testing purpose
+	return 0;
+}
+
+/*
+    shashank@ubuntu-22:~/Documents/SYS$ ./1a
+    SoftLinkshashank@ubuntu-22:~/Documents/SYS$ ll | grep "slinktest"
+    lrwxrwxrwx 1 shashank shashank     5 Aug 28 08:56 slinktest -> test1
+    shashank@ubuntu-22:~/Documents/SYS$ 
+*/
