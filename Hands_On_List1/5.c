@@ -1,6 +1,10 @@
-/* Name : Shashank Vyas
- * Roll No. : MT2024141
- * Question : Write a program to create five new files with an infinite loop. Execute the program in the background and check the file descriptor table at /proc/pid/fd.
+/*
+============================================================================
+Name : 5.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to create five new files with an infinite loop. Execute the program in the background and check the file descriptor table at /proc/pid/fd.
+Date: 30th Aug, 2024.
+============================================================================
 */
 
 #include <sys/types.h>

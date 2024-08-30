@@ -1,7 +1,11 @@
-/* Name - SHASHANK VYAS
- * Roll No. - MT2024141
- * Question: Write a program to create a file and print the file descriptor value. Use creat() system call
- */
+/*
+============================================================================
+Name : 3.c
+Author : SHASHANK VYAS
+Description : Write a C program,to create a file and print the file descriptor value. Use creat() system call
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include<stdio.h>
 #include<fcntl.h>     

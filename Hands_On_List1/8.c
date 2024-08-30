@@ -1,7 +1,11 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to open a file in read only mode, read line by line and display each line as it is read. Close the file when end of file is reached.
- */
+/*
+============================================================================
+Name : 8.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to open a file in read only mode, read line by line and display each line as it is read. Close the file when end of file is reached.
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/types.h> // Import for `open` system call.
 #include <sys/stat.h>  // Import for `open` system call.

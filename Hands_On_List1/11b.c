@@ -1,7 +1,12 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to open a file, duplicate the file descriptor and append the file with both the descriptors and check whether the file is updated properly or not using `dup2`
- */
+/*
+============================================================================
+Name : 11b.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to open a file, duplicate the file descriptor and append the file with both the descriptors and check whether the file is updated properly or not using `dup2`
+Date: 30th Aug, 2024.
+============================================================================
+*/
+
 
 #include <sys/types.h> // Import for `open` system call
 #include <sys/stat.h>  // Import for `open` system call

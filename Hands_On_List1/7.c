@@ -1,7 +1,11 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to copy file1 into file2 ($cp file1 file2).
- */
+/*
+============================================================================
+Name : 7.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to copy file1 into file2 ($cp file1 file2).
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/types.h> // Import for `open`  system call.
 #include <sys/stat.h>  // Import for `open` system call.

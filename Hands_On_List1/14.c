@@ -1,9 +1,13 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to find the type of a file. 
+/*
+============================================================================
+Name : 14.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to find the type of a file. 
     1. Input should be taken from command line. 
     2. Program should be able to identify any type of a file.
- */
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/types.h> // Imports for using `stat` system call
 #include <sys/stat.h>  // Imports for using `stat` system call

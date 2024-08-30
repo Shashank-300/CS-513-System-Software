@@ -1,7 +1,12 @@
-/* Name - Shashank Vyas
- * Roll No.- MT2024141
- * Question : Write a program to open an existing file with read write mode. Try O_EXCL flag also.
+/*
+============================================================================
+Name : 4.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to open an existing file with read write mode. Try O_EXCL flag also.
+Date: 30th Aug, 2024.
+============================================================================
 */
+
 
 #include <sys/types.h> 
 #include <sys/stat.h>  

@@ -1,6 +1,10 @@
-/* Name : Shashank Vyas
- * Roll No. : MT2024141
- * Question : Write a program to take input from STDIN and display on STDOUT. Use only read/write system calls
+/*
+============================================================================
+Name : 6.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to take input from STDIN and display on STDOUT. Use only read/write system calls
+Date: 30th Aug, 2024.
+============================================================================
 */
 
 #include <unistd.h> 

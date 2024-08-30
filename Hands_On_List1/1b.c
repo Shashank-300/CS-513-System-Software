@@ -1,7 +1,11 @@
-/* Name - SHASHANK VYAS
- * Roll No. - MT2024141
- * Question: Hard link (link system call) 
- */
+/*
+============================================================================
+Name : 1b.c
+Author : SHASHANK VYAS
+Description : Write a C, Ansi-style program to perform Hard link (link system call).
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include<stdio.h>
 #include<unistd.h>

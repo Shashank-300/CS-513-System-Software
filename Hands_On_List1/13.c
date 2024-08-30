@@ -1,7 +1,11 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to wait for a STDIN for 10 seconds using select. Write a proper print statement to verify whether the data is available within 10 seconds or not (check in $man 2 select).
- */
+/*
+============================================================================
+Name : 13.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to wait for a STDIN for 10 seconds using select. Write a proper print statement to verify whether the data is available within 10 seconds or not (check in $man 2 select).
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/time.h>  // Import for 'select' and 'struct timeval' system call
 #include <sys/types.h> // Import for 'select' system call
@@ -43,6 +47,7 @@ int main() {
 /*
     shashank@ubuntu-22:~/Documents/SYS$ ./13
     No data was given for 10 seconds.
+    
     shashank@ubuntu-22:~/Documents/SYS$ ./13
     hi 
     Data is available on STDIN.

@@ -1,7 +1,11 @@
-/* Name - SHASHANK VYAS
- * Roll No. - MT2024141
- * Question: Create a FIFO file using the `mkfifo` library function or `mknod` system call
- */
+/*
+============================================================================
+Name : 1c.c
+Author : SHASHANK VYAS
+Description : Write a C,Create a FIFO file using the `mkfifo` library function or `mknod` system call
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/types.h> 
 #include <sys/stat.h>  

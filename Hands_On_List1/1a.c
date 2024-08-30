@@ -1,7 +1,11 @@
-/* Name - SHASHANK VYAS
- * Roll No. - MT2024141
- * Question: Soft link (symlink system call) 
- */
+/*
+============================================================================
+Name : 1a.c
+Author : SHASHANK VYAS
+Description : Write a C, Ansi-style program to perform Soft link (symlink system call) .
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include<stdio.h>
 #include<unistd.h>

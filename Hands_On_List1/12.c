@@ -1,7 +1,11 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to find out the opening mode of a file. Use `fcntl`
- */
+/*
+============================================================================
+Name : 12.c
+Author : SHASHANK VYAS
+Description : Write a C ,Ansi-style program to find out the opening mode of a file. Use fcntl.
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <sys/types.h> // Import for `open` system call
 #include <sys/stat.h>  // Import for `open` system call
@@ -60,7 +64,6 @@ int main(int argc, char *argv[]) {
         printf("File is opened in synchronous I/O mode\n");
     }
 
-    // Close the file descriptor
     close(fd);
 
     return 0;
