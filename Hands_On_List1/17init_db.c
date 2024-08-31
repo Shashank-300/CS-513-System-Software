@@ -1,7 +1,11 @@
-/* Name : SHASHANK VYAS
- * Roll No. : MT2024141
- * Question : Write a program to open a file, store a ticket number, and exit.
- */
+/*
+============================================================================
+Name : 17init_db.c
+Author : SHASHANK VYAS
+Description : Write a program to open a file, store a ticket number, and exit.
+Date: 30th Aug, 2024.
+============================================================================
+*/
 
 #include <unistd.h>    // For `close`
 #include <fcntl.h>     // For `open`, `O_CREAT`, `O_RDWR`
@@ -22,11 +26,10 @@ int main() {
         return 1;
     }
 
-    // Write the initial ticket number to the file
+    // Writing the initial ticket number to the file
     write(fd, &db, sizeof(db));
     close(fd);
 
-    // Open the file to verify the content
     fd = open("db", O_RDONLY);
 
     // Read the ticket number

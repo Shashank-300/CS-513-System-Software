@@ -38,8 +38,7 @@ void main(int argc, char *argv[])
 /*
     shashank@ubuntu-22:~/Documents/SYS$ ./4 test4
     Error opening the file!: No such file or directory
-    shashank@ubuntu-22:~/Documents/SYS$ ./4 test3
-    test3      test3.txt  
+    
     shashank@ubuntu-22:~/Documents/SYS$ ./4 test3.txt
     File 'test3.txt' opened successfully with O_RDWR | O_EXCL
     shashank@ubuntu-22:~/Documents/SYS$ 
