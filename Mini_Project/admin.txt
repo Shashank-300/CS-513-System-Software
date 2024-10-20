@@ -1,5 +1,0 @@
-1 Admin1 admin123
-
-2 Admin2 securepwd
-
-3 Admin3 password123
