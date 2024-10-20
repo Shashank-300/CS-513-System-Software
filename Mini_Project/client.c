@@ -1,102 +1,70 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
+#include <stdio.h>      // Import for `printf` & `perror` functions
+#include <errno.h>      // Import for `errno` variable
+#include <fcntl.h>      // Import for `fcntl` functions
+#include <unistd.h>     // Import for `fork`, `fcntl`, `read`, `write`, `lseek`, `_exit` functions
+#include <sys/types.h>  // Import for `socket`, `bind`, `listen`, `connect`, `fork`, `lseek` functions
+#include <sys/socket.h> // Import for `socket`, `bind`, `listen`, `connect` functions
+#include <netinet/ip.h> // Import for `sockaddr_in` structure
+#include <string.h>     // Import for string functions
 
-#define PORT 8080
+void connection_handler(int sockFD); // Handles the read & write operations to the server
 
-int main() {
-    int sock;
-    struct sockaddr_in server;
-    char server_reply[2000];
-    char username[50], password[50];
-    int choice;
-    double amount;
-    char role[20];
+void main()
+{
+    int socketFileDescriptor, connectStatus;
+    struct sockaddr_in serverAddress;
 
-    // Create socket
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock == -1) {
-        perror("Could not create socket");
-        return 1;
+    socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
+    if (socketFileDescriptor == -1)
+    {
+        perror("Error while creating server socket!");
+        _exit(0);
     }
 
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    server.sin_family = AF_INET;
-    server.sin_port = htons(PORT);
+    serverAddress.sin_family = AF_INET;                // IPv4
+    serverAddress.sin_port = htons(8081);              // Server will listen to port 8081
+    serverAddress.sin_addr.s_addr = htonl(INADDR_ANY); // Binds the socket to all interfaces
 
-    // Connect to server
-    if (connect(sock, (struct sockaddr *)&server, sizeof(server)) < 0) {
-        perror("Connection failed");
-        return 1;
+    connectStatus = connect(socketFileDescriptor, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+    if (connectStatus == -1)
+    {
+        perror("Error while connecting to server!");
+        close(socketFileDescriptor);
+        _exit(0);
     }
 
-    // Receive and display role selection prompt
-    memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-    recv(sock, server_reply, sizeof(server_reply), 0);
-    printf("%s", server_reply);
+    connection_handler(socketFileDescriptor);
+}
 
-    // Send role selection
-    printf("Enter role (1-4): ");
-    scanf("%s", role);
-    send(sock, role, strlen(role), 0);
+// Handles the read & write operations with the server
+// Handles the read & write operations with the server
+void connection_handler(int sockFD)
+{
+    char readBuffer[1000], writeBuffer[1000]; // A buffer used for reading from / writing to the server
+    ssize_t readBytes, writeBytes;            // Number of bytes read/written
+    int shouldContinue = 1;
 
-    // Receive login prompt for username
-    memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-    recv(sock, server_reply, sizeof(server_reply), 0);
-    printf("%s", server_reply);
+    while (shouldContinue) {
+        // Read the server message
+        bzero(readBuffer, sizeof(readBuffer));
+        readBytes = read(sockFD, readBuffer, sizeof(readBuffer));
+        if (readBytes == 0) {
+            printf("Server closed the connection.\n");
+            break;
+        }
+        printf("%s", readBuffer);
 
-    // Send username
-    printf("Enter username: ");
-    scanf("%s", username);
-    send(sock, username, strlen(username), 0);
+        // Get user input and send it to the server
+        bzero(writeBuffer, sizeof(writeBuffer));
+        fgets(writeBuffer, sizeof(writeBuffer), stdin);
+        writeBytes = write(sockFD, writeBuffer, strlen(writeBuffer));
 
-    // Receive password prompt
-    memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-    recv(sock, server_reply, sizeof(server_reply), 0);
-    printf("%s", server_reply);
-
-    // Send password
-    printf("Enter password: ");
-    scanf("%s", password);
-    send(sock, password, strlen(password), 0);
-
-    // Receive login response
-    memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-    recv(sock, server_reply, sizeof(server_reply), 0);
-    printf("%s", server_reply);
-
-    // If login is successful, receive the appropriate menu
-    if (strstr(server_reply, "Login successful")) {
-        memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-        recv(sock, server_reply, sizeof(server_reply), 0);
-        printf("%s", server_reply);
-
-        // Loop for user input based on menu options
-        while (1) {
-            printf("Enter choice: ");
-            scanf("%d", &choice);
-            send(sock, &choice, sizeof(choice), 0);
-
-            if (choice == 2) {  // Example for deposit option
-                printf("Enter amount to deposit: ");
-                scanf("%lf", &amount);
-                send(sock, &amount, sizeof(amount), 0);
-            }
-
-            // Receive server's response after operation
-            memset(server_reply, 0, sizeof(server_reply));  // Clear buffer
-            recv(sock, server_reply, sizeof(server_reply), 0);
-            printf("%s", server_reply);
-
-            if (choice == 3) {  // Exit option
-                break;
-            }
+        // Check if the user selected to log out
+        if (strncmp(writeBuffer, "9", 1) == 0) {
+            shouldContinue = 0; // User chose to logout
         }
     }
 
-    close(sock);
-    return 0;
+    printf("Closing the connection to the server now!\n");
+    close(sockFD);
 }

@@ -1,15 +1,31 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
+#define MAX_PASSWORD_LENGTH 10
+#include "account.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include "accounts.h" // Include the account structure and related functions
+// Structure for Customer Information
+struct Customer {
+    int userID;          // Unique customer ID for login
+    char password[50];   // Password for login
+    char name[100];      // Customer's name
+    int accountID;       // Link to account structure
+    char feedback[500];  // Feedback from the customer
+    int isActive;        // Activation status: 1 for active, 0 for deactivated
+}__attribute__((packed));;
 
-void send_customer_menu(int client_sock);
-void view_balance(int client_sock, int account_id);
-void deposit_money(int client_sock, int account_id, double amount);
 
-#endif // CUSTOMER_H
+// Function Prototypes
+void customer_login(int connFD);
+void customer_menu(int connFD,int userID);
+void view_account_balance(int connFD,int userID);
+void deposit_money(int connFD,int userID);
+void withdraw_money(int connFD,int userID);
+void transfer_funds(int connFD,int userID);
+void apply_for_loan(int connFD,int userID);
+void change_password(int connFD,int userID);
+void add_customer_feedback(int connFD,int userID);
+void view_transaction(int connFD,int userID);
+
+// Helper function
+int authenticate_customer(int userID, const char *password);
+#endif
